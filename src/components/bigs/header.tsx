@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="flex items-center justify-between  text-customBlack px-6 py-4">
+    <header className="flex items-center justify-between  text-customBlack py-[20px] px-[4%]">
       {/* Logo */}
       <div className="flex items-center">
         <Image src={logo} width={150} height={50} alt="logo" priority />
@@ -28,17 +28,17 @@ const Header: React.FC = () => {
           aria-label="Toggle navigation"
         >
           <div
-            className={`w-6 h-1 bg-white mb-1 transition-transform ${
+            className={`w-6 h-1 bg-primary mb-1 transition-transform ${
               isMenuOpen ? "rotate-45 translate-y-2" : ""
             }`}
           ></div>
           <div
-            className={`w-6 h-1 bg-white mb-1 transition-opacity ${
+            className={`w-6 h-1 bg-primary mb-1 transition-opacity ${
               isMenuOpen ? "opacity-0" : ""
             }`}
           ></div>
           <div
-            className={`w-6 h-1 bg-white transition-transform ${
+            className={`w-6 h-1 bg-primary transition-transform ${
               isMenuOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           ></div>

@@ -14,7 +14,7 @@ export default {
         customGray: '#eeeff2',
         customBlack: '#1d1e21',
         primary : '#048996',
-        primaryHover : '#037883'
+        primaryHover : '#037883',
       },
     },
   },
