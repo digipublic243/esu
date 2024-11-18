@@ -9,7 +9,7 @@ function Cta() {
           <p className="text-[2rem] font-semibold text-[#404148] ">
             Information complémentaire
           </p>
-          <button className="p-[15px] bg-red-500 rounded-full font-bold text-[1.1rem] text-white bg-green-500">
+          <button className="p-[15px] rounded-full font-bold text-[1.1rem] text-white bg-green-500">
             Demande d'information
           </button>
         </div>
