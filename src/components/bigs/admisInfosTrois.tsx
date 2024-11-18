@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
-import sect_un from "@/public/sect_un.png";
+import sect_trois from "@/public/sect_trois.png";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Importer les styles AOS
 
@@ -28,7 +28,7 @@ function AdmisInfos() {
         data-aos="fade-right" // Animation au défilement
       >
         <Image
-          src={sect_un}
+          src={sect_trois}
           layout="responsive"
           width={700}
           height={100}

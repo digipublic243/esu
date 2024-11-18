@@ -88,7 +88,7 @@ const Header: React.FC = () => {
           {/* Connexion Button (positionné en bas sur mobile) */}
           <button className="md:hidden flex items-center text-gray-200 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out mb-4 ml-4">
             <FaSignInAlt className="mr-2 text-gray-400 hover:text-primary transition duration-200 ease-in-out" />
-            Connexion
+            Admission
           </button>
         </div>
       </nav>
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
       {/* Ce bouton sera visible seulement sur les écrans medium et plus grands */}
       <button className="hidden md:flex items-center text-gray-200 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out">
         <FaSignInAlt className="mr-2 text-gray-400 hover:text-primary transition duration-200 ease-in-out" />
-        Connexion
+        Admission
       </button>
     </header>
   );

@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
-import sect_un from "@/public/sect_un.png";
+import sect_deux from "@/public/sect_deux.png";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Importer les styles AOS
 
@@ -21,35 +21,19 @@ function AdmisInfos() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row py-6 px-4 md:px-10 justify-between items-center gap-6 max-w-7xl mx-auto">
-      {/* Image Section */}
-      <div
-        className="w-[80%] md:w-1/2"
-        data-aos="fade-right" // Animation au défilement
-      >
-        <Image
-          src={sect_un}
-          layout="responsive"
-          width={700}
-          height={100}
-          alt="Logo"
-          priority
-          objectFit="cover"
-        />
-      </div>
-
+    <div className="flex md:flex-row py-6 px-4 md:px-10 justify-between items-center gap-6 max-w-7xl mx-auto flex-row-reverse max-md:flex-col-reverse ">
       {/* Accordion Section */}
       <div
         className="w-full md:w-1/2 space-y-4"
-        data-aos="fade-left" // Animation au défilement
+        data-aos="fade-left" // Animation d'apparition au scroll
       >
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem
             value="item-1"
             className="border-b border-gray-200"
-            data-aos="fade-up" // Animation au clic
+            data-aos="fade-up" // Animation lors de l'activation de l'élément
           >
-            <AccordionTrigger className="text-xl font-medium text-gray-800 hover:text-green-600 transition duration-300 ease-in-out">
+            <AccordionTrigger className="text-xl font-medium text-gray-800 hover:text-purple-800 transition duration-300 ease-in-out">
               Is it accessible?
             </AccordionTrigger>
             <AccordionContent className="text-gray-600 py-2 pl-4">
@@ -62,7 +46,7 @@ function AdmisInfos() {
             className="border-b border-gray-200"
             data-aos="fade-up"
           >
-            <AccordionTrigger className="text-xl font-medium text-gray-800 hover:text-green-600 transition duration-300 ease-in-out">
+            <AccordionTrigger className="text-xl font-medium text-gray-800 hover:text-purple-800 transition duration-300 ease-in-out">
               Is it styled?
             </AccordionTrigger>
             <AccordionContent className="text-gray-600 py-2 pl-4">
@@ -76,7 +60,7 @@ function AdmisInfos() {
             className="border-b border-gray-200"
             data-aos="fade-up"
           >
-            <AccordionTrigger className="text-xl font-medium text-gray-800 hover:text-green-600 transition duration-300 ease-in-out">
+            <AccordionTrigger className="text-xl font-medium text-gray-800 hover:text-purple-800 transition duration-300 ease-in-out">
               Is it animated?
             </AccordionTrigger>
             <AccordionContent className="text-gray-600 py-2 pl-4">
@@ -85,6 +69,21 @@ function AdmisInfos() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+      </div>
+      {/* Image Section */}
+      <div
+        className="w-[80%] md:w-1/2"
+        data-aos="fade-right" // Animation pour l'image lors du scroll
+      >
+        <Image
+          src={sect_deux}
+          layout="responsive"
+          width={700}
+          height={100}
+          alt="Logo"
+          priority
+          objectFit="cover"
+        />
       </div>
     </div>
   );

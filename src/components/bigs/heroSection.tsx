@@ -23,11 +23,11 @@ function HeroSection() {
           </h1>
         </div>
       </div>
-      <div className="text-3xl w-full flex items-center justify-between py-[40px] px-[4%] bg-primary text-[#2a2c33] h-[100%] max-md:flex-col max-md:justify-center max-md:items-center max-md:text-[30px] ">
-        <div className="">
+      <div className="w-full flex items-center justify-between py-[40px] px-[4%] bg-[#40a18f] text-white h-[100%] max-md:flex-col max-md:justify-center max-md:items-center max-md:text-[30px] ">
+        <div className="text-3xl ">
           Ton aventure commence ici. <strong> Fais ta demande.</strong>
         </div>
-        <button className="bg-[#2a2c33] p-[20px] rounded-[50px] text-primaryHover">
+        <button className="text-[24px] text-white p-[20px] rounded-[10px] bg-primaryHover">
           Admission
         </button>
       </div>
