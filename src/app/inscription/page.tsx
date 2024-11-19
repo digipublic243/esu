@@ -180,36 +180,6 @@ export default function FormTimelineModal() {
                         </div>
                         <div>
                           <label
-                            htmlFor="bulletins5e"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Les bulletins de 5e
-                          </label>
-                          <input
-                            type="file"
-                            id="bulletins5e"
-                            name="bulletins5e"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="bulletins4e"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Les bulletins de 4e
-                          </label>
-                          <input
-                            type="file"
-                            id="bulletins4e"
-                            name="bulletins4e"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
-                        <div>
-                          <label
                             htmlFor="diplomeEtat"
                             className="block text-sm font-medium text-gray-700"
                           >

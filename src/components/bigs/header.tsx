@@ -53,7 +53,7 @@ const Header: React.FC = () => {
 
         {/* Links and Connexion Button */}
         <div
-          className={`absolute md:static top-[8%] left-0 w-full md:w-auto md:flex md:items-center bg-gray-800 md:bg-transparent transition-transform mb-4 ${
+          className={`absolute md:static top-[8%] left-0 w-full md:w-auto md:flex md:items-center bg-primary text-white md:bg-transparent transition-transform mb-4 ${
             isMenuOpen ? "block" : "hidden"
           }`}
         >
@@ -61,7 +61,7 @@ const Header: React.FC = () => {
             <li className="md:ml-4">
               <a
                 href="#link1"
-                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack "
+                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack max-md:text-white "
               >
                 Accueil
               </a>
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
             <li className="md:ml-4">
               <a
                 href="#link2"
-                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack "
+                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack max-md:text-white"
               >
                 À propos
               </a>
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
             <li className="md:ml-4">
               <a
                 href="#link3"
-                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack "
+                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack max-md:text-white"
               >
                 Services
               </a>
@@ -85,7 +85,7 @@ const Header: React.FC = () => {
             <li className="md:ml-4">
               <a
                 href="#link4"
-                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack "
+                className="block py-2 px-4 hover:bg-gray-700 md:hover:bg-transparent text-customBlack max-md:text-white"
               >
                 Contact
               </a>
@@ -94,19 +94,12 @@ const Header: React.FC = () => {
 
           {/* Connexion Button (positionné en bas sur mobile) */}
 
-          <p className="md:hidden flex items-center text-gray-900 py-2 px-4  hover:text-primary transition duration-200 ease-in-out mb-4 ml-4">
+          <p className="md:hidden flex items-center text-white py-2 px-4  hover:text-primary transition duration-200 ease-in-out mb-4 ml-4 ">
             <Dropdown>
-              <MenuButton>
-                <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
-                Connexion
+              <MenuButton className="text-white">
+                <FaSignInAlt className="mr-2 text-white hover:text-primary transition duration-200 ease-in-out" />
+                <Link href="/inscription">Inscription</Link>
               </MenuButton>
-              <Menu>
-                <MenuItem>
-                  <Link href="/inscription">Etudiant</Link>
-                </MenuItem>
-                <MenuItem>Université</MenuItem>
-                <MenuItem>ESU</MenuItem>
-              </Menu>
             </Dropdown>
           </p>
         </div>
@@ -117,16 +110,9 @@ const Header: React.FC = () => {
       <p className="hidden md:flex items-center text-gray-900 py-2 px-4   hover:text-primary transition duration-200 ease-in-out">
         <Dropdown>
           <MenuButton>
-            <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
-            Connexion
+            <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out " />
+            <Link href="/inscription">Inscription</Link>
           </MenuButton>
-          <Menu>
-            <MenuItem>
-              <Link href="/inscription">Etudiant</Link>
-            </MenuItem>
-            <MenuItem>Université</MenuItem>
-            <MenuItem>ESU</MenuItem>
-          </Menu>
         </Dropdown>
       </p>
     </header>
