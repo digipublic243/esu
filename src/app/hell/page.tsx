@@ -1,19 +1,12 @@
 "use client";
-import * as React from "react";
-import { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import StepContent from "@mui/material/StepContent";
-import Button from "@mui/material/Button";
+import React, { useState, useEffect } from "react";
 import { RequestHandler } from "@/src/utils/api";
 import { InputDynamic } from "@/src/components/form/bigs/inputDynamic";
 import { HeadProprety } from "@/src/types/form/currentForm";
 
 const steps = [
-  { label: "Step 1" },
-  { label: "Step 2" },
+  { label: "Indentification" },
+  { label: "Documents" },
   { label: "Remerciement" },
 ];
 
@@ -44,46 +37,16 @@ export default function FormTimelineModal() {
         }
 
         setDigiForm(responseFetch.data);
-
-        // const responsePost = await requestHandler.post({
-        //   method: "POST",
-        //   path: "/id-bio/person",
-        //   body: formData,
-        // });
-
-        console.log("Données envoyées à l'étape 1 :", formData);
-
         const responseFetchStep2 = await requestHandler.get({
           method: "GET",
           path: "/id-bio/student/head",
         });
-
-        // if (!responseFetchStep2 || !responseFetchStep2.data) {
-        //   alert(
-        //     "Impossible de récupérer les données pour le Step 2. Veuillez réessayer."
-        //   );
-        //   return;
-        // }
-
         setStepsForms(responseFetchStep2.data);
-        console.log(responseFetchStep2.data);
-
         setActiveStep(activeStep + 1);
       } else if (activeStep === 1) {
-        // const responsePostStep2 = await requestHandler.post({
-        //   method: "POST",
-        //   path: "/id-bio/student",
-        //   body: formDatas,
-        // });
-
-        // if (responsePostStep2.code === "201") {
-        //   alert("Une erreur est survenue à l'étape 2. Veuillez réessayer.");
-        // } else {
         console.log("Données envoyées à l'étape 2 :", formDatas);
-
         setActiveStep(activeStep + 1);
       }
-      // }
     } catch (error) {
       console.error("Erreur lors de la soumission :", error);
       alert("Une erreur s'est produite. Veuillez réessayer.");
@@ -112,36 +75,8 @@ export default function FormTimelineModal() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchStepData = async () => {
-  //     if (activeStep === 1) {
-  //       setLoading(true);
-  //       try {
-  //         const response = await requestHandler.get({
-  //           method: "GET",
-  //           path: "/id-bio/student/head",
-  //         });
-  //         if (!response || !response.data) {
-  //           throw new Error(
-  //             "Erreur lors du chargement des données pour le step 2."
-  //           );
-  //         }
-  //         setStepsForms(response.data);
-  //         console.log(response.data);
-  //       } catch (error) {
-  //         console.error("Erreur lors du chargement du step 2:", error);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   };
-
-  //   fetchStepData();
-  // }, [activeStep]);
 
   useEffect(() => {
     setFormDatas((prev) => ({
@@ -152,27 +87,31 @@ export default function FormTimelineModal() {
   }, [personId]);
 
   return (
-    <div className="w-full">
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
-          <Step key={step.label}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>
+    <div className="bg-gray-100 pt-[3%] h-[100%] pb-[10%] ">
+      <div className="w-[50%] max-w-[70%] mx-auto bg-white shadow-md rounded-lg p-4 ">
+        <div>
+          {steps.map((step, index) => (
+            <div key={index} className="mb-8">
+              <div
+                className={`flex items-center ${
+                  index <= activeStep ? "text-primary" : "text-gray-400"
+                }`}
+              >
+                <div className="flex items-center justify-center w-8 h-8 border-2 border-current rounded-full">
+                  {index + 1}
+                </div>
+                <span className="ml-4 text-lg font-semibold">{step.label}</span>
+              </div>
               {activeStep === index && (
-                <div>
+                <div className="mt-4">
                   {index === 0 && (
-                    <Box sx={{ mt: 2 }}>
+                    <div>
                       {loading ? (
-                        <p>Chargement ...</p>
+                        <p className="text-center text-gray-500">
+                          Chargement...
+                        </p>
                       ) : (
-                        <Box
-                          sx={{
-                            maxHeight: "400px",
-                            overflowY: "auto",
-                            padding: "8px",
-                            border: "1px solid #ccc",
-                          }}
-                        >
+                        <div className="max-h-[30%] overflow-y-auto border p-4 rounded-lg space-y-4">
                           {digiForm.map((input: HeadProprety, idx) => (
                             <InputDynamic
                               headProprety={input}
@@ -199,24 +138,18 @@ export default function FormTimelineModal() {
                               key={`${input.proprety}-${idx}`}
                             />
                           ))}
-                        </Box>
+                        </div>
                       )}
-                    </Box>
+                    </div>
                   )}
-
                   {index === 1 && (
-                    <Box sx={{ mt: 2 }}>
+                    <div>
                       {loading ? (
-                        <p>Chargement ...</p>
+                        <p className="text-center text-gray-500">
+                          Chargement...
+                        </p>
                       ) : (
-                        <Box
-                          sx={{
-                            maxHeight: "400px",
-                            overflowY: "auto",
-                            padding: "8px",
-                            border: "1px solid #ccc",
-                          }}
-                        >
+                        <div className="max-h-[30%] overflow-y-auto border p-4 rounded-lg space-y-4">
                           {stepForms.map((input: HeadProprety, idx) => (
                             <InputDynamic
                               headProprety={input}
@@ -231,62 +164,49 @@ export default function FormTimelineModal() {
                                 value: formDatas[input.proprety] || "",
                                 placeholder: input.proprety,
                                 setValue: (value) =>
-                                  input.proprety === "personId" ||
-                                  input.proprety === "personTypeId"
-                                    ? null
-                                    : setFormDatas((prev) => ({
-                                        ...prev,
-                                        [input.proprety]: value,
-                                      })),
+                                  setFormDatas((prev) => ({
+                                    ...prev,
+                                    [input.proprety]: value,
+                                  })),
                                 fields: input.fields,
                                 modelPath: input.modelPath,
                                 constraints: input.constraints,
                                 error: errors[input.proprety],
-                                readOnly:
-                                  input.proprety === "personId" ||
-                                  input.proprety === "personTypeId",
                               }}
                               key={`${input.proprety}-${idx}`}
                             />
                           ))}
-                        </Box>
+                        </div>
                       )}
-                    </Box>
+                    </div>
                   )}
 
-                  <Box sx={{ mb: 2 }}>
+                  <div className="flex justify-between mt-4">
                     {activeStep > 0 && (
-                      <Button
+                      <button
                         onClick={handlePrevStep}
-                        variant="outlined"
-                        sx={{ mr: 1, marginTop: "20px" }}
+                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
                       >
                         Retour
-                      </Button>
+                      </button>
                     )}
-                    {activeStep < steps.length - 1 ? (
-                      <Button
-                        onClick={handleNextStep}
-                        variant="contained"
-                        sx={{ mr: 1, marginTop: "20px" }}
-                      >
-                        Suivant
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="contained"
-                        sx={{ mr: 1, marginTop: "20px" }}
-                      >
-                        Valider
-                      </Button>
-                    )}
-                  </Box>
+                    <button
+                      onClick={
+                        activeStep < steps.length - 1
+                          ? handleNextStep
+                          : () => alert("Formulaire terminé")
+                      }
+                      className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primaryHover"
+                    >
+                      {activeStep < steps.length - 1 ? "Suivant" : "Valider"}
+                    </button>
+                  </div>
                 </div>
               )}
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
