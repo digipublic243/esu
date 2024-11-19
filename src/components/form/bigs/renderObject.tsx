@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { RequestHandler } from "@/src/app/utils/api";
-import Loader from "@/components/atoms/loader";
+import { RequestHandler } from "@/src/utils/api";
+import Loader from "@/src/components/atoms/loader";
 
 interface DataObject {
   [key: string]: string | number | DataObject | Array<any>;

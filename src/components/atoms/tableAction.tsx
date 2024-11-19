@@ -5,7 +5,7 @@ import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 import { MdEast } from "react-icons/md";
-import { DataActionsType } from "@/types/dataActions.type";
+import { DataActionsType } from "@/src/types/dataActions.type";
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -50,13 +50,21 @@ const StyledMenu = styled((props: MenuProps) => (
   },
 }));
 
-export default function TableActions({actions,data,onEmitEvent}: {actions: DataActionsType | null;onEmitEvent: (eventData: any) => any; data:any;}) {
+export default function TableActions({
+  actions,
+  data,
+  onEmitEvent,
+}: {
+  actions: DataActionsType | null;
+  onEmitEvent: (eventData: any) => any;
+  data: any;
+}) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -85,7 +93,7 @@ export default function TableActions({actions,data,onEmitEvent}: {actions: DataA
       >
         <MenuItem onClick={() => onEmitEvent(data)} disableRipple>
           Overview
-        </MenuItem> 
+        </MenuItem>
         {/* {actions?.getOverview ? ():("")} */}
         <MenuItem onClick={handleClose} disableRipple>
           {/* <MdEast /> */}

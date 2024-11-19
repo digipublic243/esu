@@ -1,7 +1,7 @@
-import { menuIcons } from "@/store/icons/menu.icon";
-import { CurrentMenuStore } from "@/store/pageData/currentMenu";
-import { SideBareStatement } from "@/store/pageData/sideBareStatement";
-import { MenuAssetType } from "@/types/request/types/menu";
+import { menuIcons } from "@/src/store/icons/menu.icon";
+import { CurrentMenuStore } from "@/src/store/pageData/currentMenu";
+import { SideBareStatement } from "@/src/store/pageData/sideBareStatement";
+import { MenuAssetType } from "@/src/types/request/types/menu";
 import { useRouter } from "next/navigation";
 import { CiFolderOn } from "react-icons/ci";
 import { useStore } from "zustand";

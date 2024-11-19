@@ -1,9 +1,9 @@
-import { LocalStorageToken } from "@/types/localStorage/token";
+import { LocalStorageToken } from "@/src/types/localStorage/token";
 import {
   PostRequestMethodParamsType,
   RequestMethodParamsType,
-} from "@/types/request/params";
-import { ResponseInterface } from "@/types/request/responseInterface";
+} from "@/src/types/request/params";
+import { ResponseInterface } from "@/src/types/request/responseInterface";
 
 export class RequestHandler {
   static get(arg0: { method: string; path: string }) {

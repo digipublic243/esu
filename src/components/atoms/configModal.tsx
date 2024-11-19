@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+
 import {
   Dialog,
   DialogClose,
@@ -7,7 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/src/components/ui/dialog";
 import { ReactNode } from "react";
 
 interface ModalProps {
@@ -32,7 +33,7 @@ const ConfigModalComponent = ({
   return (
     <Dialog
       open={isOpen}
-      onOpenChange={(open) => {
+      onOpenChange={(open: any) => {
         if (!open && closeOnMaskClicked) {
           onClosing();
           closeModal();

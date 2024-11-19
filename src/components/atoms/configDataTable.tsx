@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+
 import {
   Table,
   TableBody,
@@ -10,7 +11,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/src/components/ui/table";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,10 +20,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/src/components/ui/dropdown-menu";
 
 import { Airplay, EllipsisVertical, Plus } from "lucide-react";
 import React, { useImperativeHandle, forwardRef } from "react";
+
 import {
   Pagination,
   PaginationContent,
@@ -30,13 +33,13 @@ import {
   PaginationLink,
   PaginationEllipsis,
   PaginationNext,
-} from "@/components/ui/pagination";
-import { RequestHandler } from "@/utils/api";
+} from "@/src/components/ui/pagination";
+import { RequestHandler } from "@/src/utils/api";
 import ConfigsTitle from "./configTitle";
 import ConfigDataTableSkeleton from "./configDataTableSkeleton";
 import ConfigModalComponent from "./configModal";
 import ConfigCreationComponent from "./configCreationComponent";
-import { DataActionsType } from "@/types/dataActions.type";
+import { DataActionsType } from "@/src/types/dataActions.type";
 
 const ConfigDataTableComponent = (
   props: { getUrl: string; title: string; subtitle: string },

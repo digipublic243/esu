@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import ConfigDataTableSkeleton from "./configDataTableSkeleton";
-import { RequestHandler } from "@/utils/api";
-import { DataActionsType } from "@/types/dataActions.type";
+import { RequestHandler } from "@/src/utils/api";
+import { DataActionsType } from "@/src/types/dataActions.type";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { HeadProprety } from "@/types/form/currentForm";
+import { HeadProprety } from "@/src/types/form/currentForm";
 import { InputDynamic } from "../form/bigs/inputDynamic";
 import Box from "@mui/material/Box";
 import { Loader2 } from "lucide-react";
@@ -169,7 +169,7 @@ const ConfigCreationComponent = ({
                               (formData !== null && formData[input.proprety]) ||
                               "",
                             placeholder: input.proprety,
-                            setValue: (value) =>
+                            setValue: (value: any) =>
                               setFormData((prev) => ({
                                 ...prev,
                                 [input.proprety]: value,

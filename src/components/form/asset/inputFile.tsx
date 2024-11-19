@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Button, Input } from "@mui/material";
-import { InputPropsType } from "@/types/props/input.type";
+import { InputPropsType } from "@/src/types/props/input.type";
 
 // export default function InputFile() {
 //   const [selectedFiles, setSelectedFiles] = React.useState<File[]>([]);
@@ -48,8 +48,8 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { ImageUploader } from "@/src/app/utils/imageUploader";
-import { LocalStorageToken } from "@/types/localStorage/token";
+import { ImageUploader } from "@/src/utils/imageUploader";
+import { LocalStorageToken } from "@/src/types/localStorage/token";
 import Image from "next/image";
 
 const InputFile = (props: InputPropsType) => {

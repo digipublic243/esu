@@ -1,4 +1,4 @@
-import { MenuAssetType } from "@/types/request/types/menu";
+import { MenuAssetType } from "@/src/types/request/types/menu";
 
 const NavBarLine = (props: {
   link: MenuAssetType;

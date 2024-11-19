@@ -3,15 +3,13 @@ import { useState } from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import IconButton from "@mui/material/IconButton";
-import Collapse from "@mui/material/Collapse";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
+
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { Checkbox } from "@mui/material";
-import { KeyValueObject } from "@/utils/columnDisplayerAnalyser";
-import { Utils } from "@/utils/globalUtils";
+import { KeyValueObject } from "@/src/utils/columnDisplayerAnalyser";
+import { Utils } from "@/src/utils/globalUtils";
 import TableActions from "./tableAction";
-import { DataActionsType } from "@/types/dataActions.type";
+import { DataActionsType } from "@/src/types/dataActions.type";
 
 type TableRowWithChildrenProps = {
   row: any;

@@ -1,6 +1,6 @@
-import { PrimaryButton } from "@/components/form/asset/button";
-import { InputDynamic } from "@/components/form/bigs/inputDynamic";
-import { CurrentFormStore } from "@/store/form/currentForm";
+import { PrimaryButton } from "@/src/components/form/asset/button";
+import { InputDynamic } from "@/src/components/form/bigs/inputDynamic";
+import { CurrentFormStore } from "@/src/store/form/currentForm";
 import { useStore } from "zustand";
 import { Box, Typography } from "@mui/material";
 import { useState, useCallback, useRef } from "react";
@@ -90,11 +90,17 @@ const InputSectionNo = ({
     forms.forEach((form) => {
       const errors: { [key: string]: string } = {};
 
-      currentForm?.inputs.forEach((input) => {
-        if (!form.formData[input.proprety] && input.constraints) {
-          errors[input.proprety] = `${input.verbose} est requis.`;
+      currentForm?.inputs.forEach(
+        (input: {
+          proprety: string | number;
+          constraints: any;
+          verbose: any;
+        }) => {
+          if (!form.formData[input.proprety] && input.constraints) {
+            errors[input.proprety] = `${input.verbose} est requis.`;
+          }
         }
-      });
+      );
 
       if (Object.keys(errors).length > 0) {
         formErrors[form.id] = errors;

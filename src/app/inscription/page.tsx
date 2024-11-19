@@ -122,7 +122,7 @@ export default function FormTimelineModal() {
                                 label: input.verbose,
                                 value: formData[input.proprety] || "",
                                 placeholder: input.proprety,
-                                setValue: (value) =>
+                                setValue: (value: any) =>
                                   setFormData((prev) => ({
                                     ...prev,
                                     [input.proprety]: value,

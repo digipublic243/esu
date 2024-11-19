@@ -25,7 +25,7 @@ export type HeadProprety = {
   };
   isDisabled?: boolean;
   defaultValue?: any;
-  type: string;
+  type?: string;
   fields?: string[];
   modelPath?: string;
   verbose: string;

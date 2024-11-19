@@ -10,12 +10,12 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { RequestHandler } from "@/src/app/utils/api";
-import { CurrentFormStore } from "@/store/form/currentForm";
+import { RequestHandler } from "@/src/utils/api";
+import { CurrentFormStore } from "@/src/store/form/currentForm";
 import { useStore } from "zustand";
 import { InputDynamic } from "../bigs/inputDynamic";
-import { HeadProprety } from "@/types/form/currentForm";
-import { MethodType } from "@/types/dataActions.type";
+import { HeadProprety } from "@/src/types/form/currentForm";
+import { MethodType } from "@/src/types/dataActions.type";
 
 const RecipeType = ({
   isActive,
@@ -159,14 +159,16 @@ export default function VerticalLinearStepper({
           recipeType == "BRANCH" ? "branch" : "asset"
         }`,
         body: form,
-        setErrorMessage: (str) => setRecapData({ code: 400, message: str }),
+        setErrorMessage: (str: any) =>
+          setRecapData({ code: 400, message: str }),
       });
     } else {
       response = await requestHandler.post({
         method: "POST",
         path: `/recipe/${recipeType == "BRANCH" ? "branch" : "asset"}`,
         body: form,
-        setErrorMessage: (str) => setRecapData({ code: 400, message: str }),
+        setErrorMessage: (str: any) =>
+          setRecapData({ code: 400, message: str }),
       });
     }
     if (response.code === 201) {

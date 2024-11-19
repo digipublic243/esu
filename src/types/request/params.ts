@@ -1,4 +1,4 @@
-import { ToastStoreType } from "@/store/toast";
+import { ToastStoreType } from "@/src/store/toast";
 
 export type RequestMethodParamsType = {
   path: string;

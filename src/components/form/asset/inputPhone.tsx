@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { TextField, Box } from "@mui/material";
-import { InputPropsType } from "@/types/props/input.type";
+import { InputPropsType } from "@/src/types/props/input.type";
 
 export default function InputPhone(props: InputPropsType) {
   const [phoneNumber, setPhoneNumber] = useState("");

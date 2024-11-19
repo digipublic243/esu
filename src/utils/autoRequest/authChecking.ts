@@ -1,7 +1,7 @@
-import { LocalStorageToken } from "@/types/localStorage/token";
+import { LocalStorageToken } from "@/src/types/localStorage/token";
 import { RequestHandler } from "../api";
-import { LocalStorageUser } from "@/types/localStorage/user";
-import { LoginResponse } from "@/types/auth/loginResponse.type";
+import { LocalStorageUser } from "@/src/types/localStorage/user";
+import { LoginResponse } from "@/src/types/auth/loginResponse.type";
 
 export class AuthChecking {
   requestHandler;

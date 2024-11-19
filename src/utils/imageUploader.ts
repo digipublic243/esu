@@ -1,4 +1,4 @@
-import { LocalStorageToken } from "@/types/localStorage/token";
+import { LocalStorageToken } from "@/src/types/localStorage/token";
 import { RequestHandler } from "./api";
 
 interface BlobWithMetadata {

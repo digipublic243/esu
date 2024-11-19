@@ -5,9 +5,9 @@ import React, {
   FormEvent,
   useMemo,
 } from "react";
-import { PrimaryButton } from "@/components/form/asset/button";
-import { InputDynamic } from "@/components/form/bigs/inputDynamic";
-import { CurrentFormStore } from "@/store/form/currentForm";
+import { PrimaryButton } from "@/src/components/form/asset/button";
+import { InputDynamic } from "@/src/components/form/bigs/inputDynamic";
+import { CurrentFormStore } from "@/src/store/form/currentForm";
 import { useStore } from "zustand";
 import { useEffect } from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
@@ -256,7 +256,7 @@ const InputSection: React.FC<InputSectionProps> = ({
                 inputProps={{
                   label: input.verbose,
                   isDesabled: input.isDisabled || false,
-                  value:  form.formData[input.proprety],
+                  value: form.formData[input.proprety],
                   defaultValue: input.defaultValue,
                   placeholder: input.proprety,
                   setValue: (value) =>

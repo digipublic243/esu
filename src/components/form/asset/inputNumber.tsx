@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { TextField, Box } from "@mui/material";
-import { InputPropsType } from "@/types/props/input.type";
+import { InputPropsType } from "@/src/types/props/input.type";
 
 export default function InputNumber(props: InputPropsType) {
   const [error, setError] = useState(false);

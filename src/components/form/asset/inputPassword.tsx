@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
-import { InputPropsType } from "@/types/props/input.type";
+import { InputPropsType } from "@/src/types/props/input.type";
 
 export const InputPassword = (props: InputPropsType) => {
   const [showPassword, setShowPassword] = useState(false);

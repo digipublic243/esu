@@ -1,6 +1,6 @@
 "use client";
 
-import { InputPropsType } from "@/types/props/input.type";
+import { InputPropsType } from "@/src/types/props/input.type";
 import { useState } from "react";
 import { TextField, Box } from "@mui/material";
 import dayjs from "dayjs";
