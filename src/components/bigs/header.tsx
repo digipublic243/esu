@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { FaSignInAlt } from "react-icons/fa";
 import logo from "@/public/logo-inline-green.png";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +17,9 @@ const Header: React.FC = () => {
     <header className="flex items-center justify-between  text-customBlack py-[20px] px-[4%]">
       {/* Logo */}
       <div className="flex items-center">
-        <Image src={logo} width={150} height={50} alt="logo" priority />
+        <Link href="/">
+          <Image src={logo} width={150} height={50} alt="logo" priority />
+        </Link>
       </div>
 
       {/* Navigation */}
@@ -86,18 +89,22 @@ const Header: React.FC = () => {
           </ul>
 
           {/* Connexion Button (positionné en bas sur mobile) */}
-          <button className="md:hidden flex items-center text-gray-200 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out mb-4 ml-4">
-            <FaSignInAlt className="mr-2 text-gray-400 hover:text-primary transition duration-200 ease-in-out" />
-            Admission
-          </button>
+          <Link href="/inscription">
+            <p className="md:hidden flex items-center text-gray-200 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out mb-4 ml-4">
+              <FaSignInAlt className="mr-2 text-gray-400 hover:text-primary transition duration-200 ease-in-out" />
+              Admission
+            </p>
+          </Link>
         </div>
       </nav>
 
       {/* Ce bouton sera visible seulement sur les écrans medium et plus grands */}
-      <button className="hidden md:flex items-center text-gray-200 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out">
-        <FaSignInAlt className="mr-2 text-gray-400 hover:text-primary transition duration-200 ease-in-out" />
-        Admission
-      </button>
+      <Link href="/inscription">
+        <p className="hidden md:flex items-center text-gray-200 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out">
+          <FaSignInAlt className="mr-2 text-gray-400 hover:text-primary transition duration-200 ease-in-out" />
+          Admission
+        </p>
+      </Link>
     </header>
   );
 };
