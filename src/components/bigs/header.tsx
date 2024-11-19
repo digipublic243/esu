@@ -5,6 +5,10 @@ import Image from "next/image";
 import { FaSignInAlt } from "react-icons/fa";
 import logo from "@/public/logo-inline-green.png";
 import Link from "next/link";
+import Dropdown from "@mui/joy/Dropdown";
+import Menu from "@mui/joy/Menu";
+import MenuButton from "@mui/joy/MenuButton";
+import MenuItem from "@mui/joy/MenuItem";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,22 +93,42 @@ const Header: React.FC = () => {
           </ul>
 
           {/* Connexion Button (positionné en bas sur mobile) */}
-          <Link href="/inscription">
-            <p className="md:hidden flex items-center text-gray-900 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out mb-4 ml-4">
-              <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
-              Admission
-            </p>
-          </Link>
+
+          <p className="md:hidden flex items-center text-gray-900 py-2 px-4  hover:text-primary transition duration-200 ease-in-out mb-4 ml-4">
+            <Dropdown>
+              <MenuButton>
+                <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
+                Connexion
+              </MenuButton>
+              <Menu>
+                <MenuItem>
+                  <Link href="/inscription">Etudiant</Link>
+                </MenuItem>
+                <MenuItem>Université</MenuItem>
+                <MenuItem>ESU</MenuItem>
+              </Menu>
+            </Dropdown>
+          </p>
         </div>
       </nav>
 
       {/* Ce bouton sera visible seulement sur les écrans medium et plus grands */}
-      <Link href="/inscription">
-        <p className="hidden md:flex items-center text-gray-900 py-2 px-4 border border-gray-500 hover:bg-gray-100 hover:text-primary transition duration-200 ease-in-out">
-          <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
-          Admission
-        </p>
-      </Link>
+
+      <p className="hidden md:flex items-center text-gray-900 py-2 px-4   hover:text-primary transition duration-200 ease-in-out">
+        <Dropdown>
+          <MenuButton>
+            <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
+            Connexion
+          </MenuButton>
+          <Menu>
+            <MenuItem>
+              <Link href="/inscription">Etudiant</Link>
+            </MenuItem>
+            <MenuItem>Université</MenuItem>
+            <MenuItem>ESU</MenuItem>
+          </Menu>
+        </Dropdown>
+      </p>
     </header>
   );
 };

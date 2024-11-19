@@ -20,6 +20,9 @@ export default function FormTimelineModal() {
   const [formDatas, setFormDatas] = useState<{ [key: string]: any }>({});
   const requestHandler = new RequestHandler();
 
+  const endNextStep = () => {
+    console.log();
+  };
   const handleNextStep = async () => {
     try {
       if (activeStep === 0) {
@@ -51,6 +54,9 @@ export default function FormTimelineModal() {
         // Step 3 : Affichage du message final
         console.log("Formulaire terminé :", formData);
         alert("Votre inscription est terminée !");
+        setFormData({});
+        setFormDatas({});
+        setActiveStep(activeStep - 2);
       }
     } catch (error) {
       console.error("Erreur lors de la soumission :", error);
@@ -101,7 +107,6 @@ export default function FormTimelineModal() {
               </div>
               {activeStep === index && (
                 <div className="mt-4">
-
                   {index === 0 && (
                     <div>
                       {loading ? (
@@ -109,7 +114,7 @@ export default function FormTimelineModal() {
                           Chargement...
                         </p>
                       ) : (
-                        <div className="max-h-[30%] overflow-y-auto border p-4 rounded-lg space-y-4">
+                        <div className="max-h-[30%] border p-4 rounded-lg space-y-4 w-[100%] ">
                           {digiForm.map((input: HeadProprety, idx) => (
                             <InputDynamic
                               headProprety={input}
