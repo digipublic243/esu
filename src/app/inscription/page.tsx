@@ -85,7 +85,7 @@ export default function FormTimelineModal() {
 
   return (
     <div className="bg-gray-100 pt-[3%] h-[100%] pb-[10%]">
-      <div className="w-[50%] max-w-[70%] mx-auto bg-white shadow-md rounded-lg p-4">
+      <div className="w-[50%] max-w-[70%] mx-auto bg-white shadow-md rounded-lg p-5">
         <div>
           {steps.map((step, index) => (
             <div key={index} className="mb-8">
@@ -101,6 +101,7 @@ export default function FormTimelineModal() {
               </div>
               {activeStep === index && (
                 <div className="mt-4">
+
                   {index === 0 && (
                     <div>
                       {loading ? (
@@ -250,7 +251,6 @@ export default function FormTimelineModal() {
                       </div>
                     </div>
                   )}
-
                   {index === 2 && (
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-4">

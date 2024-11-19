@@ -2,9 +2,9 @@ import React from "react";
 
 function Cta() {
   return (
-    <div className="bg-[#f8f8f9] py-[10px] px-[10%] flex">
+    <div className="bg-[#f8f8f9] pb-[20px] px-[10%] flex">
       <div>
-        <div>
+        <div className="my-4">
           <span className="text-green-500 text-[6rem] ">+</span>
           <p className="text-[2rem] font-semibold text-[#404148] ">
             Information complémentaire
