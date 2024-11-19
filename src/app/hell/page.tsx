@@ -45,52 +45,45 @@ export default function FormTimelineModal() {
 
         setDigiForm(responseFetch.data);
 
-        const responsePost = await requestHandler.post({
-          method: "POST",
-          path: "/id-bio/person",
-          body: formData,
+        // const responsePost = await requestHandler.post({
+        //   method: "POST",
+        //   path: "/id-bio/person",
+        //   body: formData,
+        // });
+
+        console.log("Données envoyées à l'étape 1 :", formData);
+
+        const responseFetchStep2 = await requestHandler.get({
+          method: "GET",
+          path: "/id-bio/student/head",
         });
 
-        if (responsePost.code === "201") {
-          alert("Une erreur est survenue à l'étape 1. Veuillez réessayer.");
-        } else {
-          console.log("Données envoyées à l'étape 1 :", formData);
-          console.log(responsePost);
-          setPersonId(responsePost.data.id);
+        // if (!responseFetchStep2 || !responseFetchStep2.data) {
+        //   alert(
+        //     "Impossible de récupérer les données pour le Step 2. Veuillez réessayer."
+        //   );
+        //   return;
+        // }
 
-          const responseFetchStep2 = await requestHandler.get({
-            method: "GET",
-            path: "/id-bio/student/head",
-          });
+        setStepsForms(responseFetchStep2.data);
+        console.log(responseFetchStep2.data);
 
-          if (!responseFetchStep2 || !responseFetchStep2.data) {
-            alert(
-              "Impossible de récupérer les données pour le Step 2. Veuillez réessayer."
-            );
-            return;
-          }
-
-          setStepsForms(responseFetchStep2.data);
-          console.log(responseFetchStep2.data);
-
-          setActiveStep(activeStep + 1);
-        }
+        setActiveStep(activeStep + 1);
       } else if (activeStep === 1) {
-        const responsePostStep2 = await requestHandler.post({
-          method: "POST",
-          path: "/id-bio/student",
-          body: formDatas,
-        });
+        // const responsePostStep2 = await requestHandler.post({
+        //   method: "POST",
+        //   path: "/id-bio/student",
+        //   body: formDatas,
+        // });
 
-        if (responsePostStep2.code === "201") {
-          alert("Une erreur est survenue à l'étape 2. Veuillez réessayer.");
-        } else {
-          console.log("Données envoyées à l'étape 2 :", formDatas);
-          console.log(responsePostStep2);
+        // if (responsePostStep2.code === "201") {
+        //   alert("Une erreur est survenue à l'étape 2. Veuillez réessayer.");
+        // } else {
+        console.log("Données envoyées à l'étape 2 :", formDatas);
 
-          setActiveStep(activeStep + 1);
-        }
+        setActiveStep(activeStep + 1);
       }
+      // }
     } catch (error) {
       console.error("Erreur lors de la soumission :", error);
       alert("Une erreur s'est produite. Veuillez réessayer.");
@@ -224,7 +217,6 @@ export default function FormTimelineModal() {
                             border: "1px solid #ccc",
                           }}
                         >
-                          {personId}
                           {stepForms.map((input: HeadProprety, idx) => (
                             <InputDynamic
                               headProprety={input}
