@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { RequestHandler } from "@/src/utils/api";
 import { InputDynamic } from "@/src/components/form/bigs/inputDynamic";
 import { HeadProprety } from "@/src/types/form/currentForm";
+import { Box } from "lucide-react";
 
 const steps = [
   { label: "Identification" },
@@ -18,15 +19,12 @@ export default function FormTimelineModal() {
   const [errors, setErrors] = useState<{ [key: string]: string | null }>({});
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
   const [formDatas, setFormDatas] = useState<{ [key: string]: any }>({});
+  const [personId, setPersonId] = useState(null);
   const requestHandler = new RequestHandler();
 
-  const endNextStep = () => {
-    console.log();
-  };
   const handleNextStep = async () => {
     try {
       if (activeStep === 0) {
-        // Récupérer les données du Step 1
         const responseFetch = await requestHandler.get({
           method: "GET",
           path: "/id-bio/person/head",
@@ -40,16 +38,54 @@ export default function FormTimelineModal() {
         }
 
         setDigiForm(responseFetch.data);
-        const responseFetchStep2 = await requestHandler.get({
-          method: "GET",
-          path: "/id-bio/student/head",
+
+        const responsePost = await requestHandler.post({
+          method: "POST",
+          path: "/id-bio/person",
+          body: formData,
         });
-        setStepsForms(responseFetchStep2.data);
-        setActiveStep(activeStep + 1);
+
+        if (responsePost.code !== "201") {
+          alert("Une erreur est survenue à l'étape 1. Veuillez réessayer.");
+          console.log(responsePost);
+          console.log(responsePost.message);
+        } else {
+          console.log("Données envoyées à l'étape 1 :", formData);
+          console.log(responsePost);
+          setPersonId(responsePost.data.id);
+
+          const responseFetchStep2 = await requestHandler.get({
+            method: "GET",
+            path: "/id-bio/student/head",
+          });
+
+          if (!responseFetchStep2 || !responseFetchStep2.data) {
+            alert(
+              "Impossible de récupérer les données pour le Step 2. Veuillez réessayer."
+            );
+            return;
+          }
+
+          setStepsForms(responseFetchStep2.data);
+          console.log(responseFetchStep2.data);
+
+          setActiveStep(activeStep + 1);
+        }
       } else if (activeStep === 1) {
-        // Étape des documents
-        console.log("Données envoyées à l'étape 2 :", formDatas);
-        setActiveStep(activeStep + 1);
+        const responsePostStep2 = await requestHandler.post({
+          method: "POST",
+          path: "/id-bio/student",
+          body: formDatas,
+        });
+
+        if (responsePostStep2.code !== "201") {
+          alert("Une erreur est survenue à l'étape 2. Veuillez réessayer.");
+        } else {
+          console.log("Données envoyées à l'étape 2 :", formDatas);
+          console.log(responsePostStep2);
+
+          setActiveStep(activeStep + 1);
+        }
       } else if (activeStep === 2) {
         // Step 3 : Affichage du message final
         console.log("Formulaire terminé :", formData);
@@ -88,6 +124,14 @@ export default function FormTimelineModal() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setFormDatas((prev) => ({
+      ...prev,
+      personId: personId,
+      personTypeId: "Etudiant",
+    }));
+  }, [personId]);
 
   return (
     <div className="bg-gray-100 pt-[3%] h-[100%] pb-[10%]">
@@ -128,7 +172,7 @@ export default function FormTimelineModal() {
                                 label: input.verbose,
                                 value: formData[input.proprety] || "",
                                 placeholder: input.proprety,
-                                setValue: (value: any) =>
+                                setValue: (value) =>
                                   setFormData((prev) => ({
                                     ...prev,
                                     [input.proprety]: value,
@@ -148,81 +192,44 @@ export default function FormTimelineModal() {
                   {index === 1 && (
                     <div>
                       <div className="max-h-[30%] overflow-y-auto border p-4 rounded-lg space-y-4">
-                        <div>
-                          <label
-                            htmlFor="pieceIdentite"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Copie Pièce D'identité
-                          </label>
-                          <input
-                            type="file"
-                            id="pieceIdentite"
-                            name="pieceIdentite"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="bulletins6e"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Les bulletins de 6e
-                          </label>
-                          <input
-                            type="file"
-                            id="bulletins6e"
-                            name="bulletins6e"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="diplomeEtat"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Diplôme d'État ou Attestation de Réussite
-                          </label>
-                          <input
-                            type="file"
-                            id="diplomeEtat"
-                            name="diplomeEtat"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="attestationVieMoeurs"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Attestation de Bonne Vie et Mœurs
-                          </label>
-                          <input
-                            type="file"
-                            id="attestationVieMoeurs"
-                            name="attestationVieMoeurs"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="attestationPhysique"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Attestation d’Aptitude Physique
-                          </label>
-                          <input
-                            type="file"
-                            id="attestationPhysique"
-                            name="attestationPhysique"
-                            accept=".pdf,.jpg,.jpeg,.png"
-                            className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
-                          />
-                        </div>
+                        {loading ? (
+                          <p>Chargement ...</p>
+                        ) : (
+                          <div className="max-h-[400px] overflow-y-auto p-2 border border-gray-300">
+                            {stepForms.map((input: HeadProprety, idx) => (
+                              <InputDynamic
+                                headProprety={input}
+                                setError={(message) =>
+                                  setErrors((prevErrors) => ({
+                                    ...prevErrors,
+                                    [input.proprety]: message,
+                                  }))
+                                }
+                                inputProps={{
+                                  label: input.verbose,
+                                  value: formDatas[input.proprety] || "",
+                                  placeholder: input.proprety,
+                                  setValue: (value) =>
+                                    input.proprety === "personId" ||
+                                    input.proprety === "personTypeId"
+                                      ? null
+                                      : setFormDatas((prev) => ({
+                                          ...prev,
+                                          [input.proprety]: value,
+                                        })),
+                                  fields: input.fields,
+                                  modelPath: input.modelPath,
+                                  constraints: input.constraints,
+                                  error: errors[input.proprety],
+                                  readOnly:
+                                    input.proprety === "personId" ||
+                                    input.proprety === "personTypeId",
+                                }}
+                                key={`${input.proprety}-${idx}`}
+                              />
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
