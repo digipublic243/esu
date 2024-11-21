@@ -2,11 +2,13 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { CiCircleRemove } from "react-icons/ci";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -18,10 +20,18 @@ const Login = () => {
     console.log("Password:", password);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="bg-gray-100 h-[87vh] p-[5%] ">
       <div className=" px-4 py-4 justify-center flex gap-4">
-        <div className="p-6 bg-white border border-black w-[40%] ">
+        <div className="p-6 bg-white border border-gray-300 w-[40%] ">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Connecte-toi à ton compte
           </h2>
@@ -97,7 +107,7 @@ const Login = () => {
         </div>
 
         <div className="flex flex-col gap-4 w-[40%]">
-          <div className="p-6 bg-white border border-black ">
+          <div className="p-6 bg-white border border-gray-300 ">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               DigiPublic | eStudent
             </h2>
@@ -106,6 +116,7 @@ const Login = () => {
               Si tu n'as pas de compte , créer un en une minute.
             </p>
             <button
+              onClick={openModal}
               type="submit"
               className="ml-[30%] mt-4 text-center w-[200x] px-4 py-2 text-white bg-primary hover:bg-primaryHover rounded-md shadow-sm focus:outline-none focus:ring-2 "
             >
@@ -113,7 +124,7 @@ const Login = () => {
             </button>
           </div>
 
-          <div className="p-6 bg-white border border-black">
+          <div className="p-6 bg-white border border-gray-300">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing <br /> elit.
               Nobis, eius. Laudantium quos cupiditate vero nostrum!
@@ -129,6 +140,21 @@ const Login = () => {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg w-[30%]">
+            <div className="flex justify-between">
+              <h2 className="text-2xl font-bold mb-4">Créer un compte</h2>
+              <div onClick={closeModal} className="cursor-pointer">
+                <CiCircleRemove className="text-[2rem] " />
+              </div>
+            </div>
+
+            <div>Chargement du formulaire en cours ... </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
