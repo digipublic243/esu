@@ -98,7 +98,7 @@ const Header: React.FC = () => {
             <Dropdown>
               <MenuButton className="text-white">
                 <FaSignInAlt className="mr-2 text-white hover:text-primary transition duration-200 ease-in-out" />
-                <Link href="/inscription">Inscription</Link>
+                <Link href="/connexion">Se connecter</Link>
               </MenuButton>
             </Dropdown>
           </p>
@@ -111,7 +111,7 @@ const Header: React.FC = () => {
         <Dropdown>
           <MenuButton>
             <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out " />
-            <Link href="/inscription">Inscription</Link>
+            <Link href="/connexion">Se connecter</Link>
           </MenuButton>
         </Dropdown>
       </p>
