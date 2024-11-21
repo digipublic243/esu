@@ -19,9 +19,9 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100 h-[90vh] p-[5%] ">
+    <div className="bg-gray-100 h-[87vh] p-[5%] ">
       <div className=" px-4 py-4 justify-center flex gap-4">
-        <div className="p-6 bg-white border border-black">
+        <div className="p-6 bg-white border border-black w-[40%] ">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
             Connecte-toi à ton compte
           </h2>
@@ -96,7 +96,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-[40%]">
           <div className="p-6 bg-white border border-black ">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               DigiPublic | eStudent

@@ -129,7 +129,7 @@ export default function CommuneFilter(props: InputPropsType) {
             <MenuItem disabled>Loading...</MenuItem>
           ) : (
             provinces.map((province) => (
-              <MenuItem key={province.id} value={province.name}>
+              <MenuItem key={province.id} value={province.id}>
                 <ListItemText primary={province.name} />
               </MenuItem>
             ))
@@ -154,7 +154,7 @@ export default function CommuneFilter(props: InputPropsType) {
               <MenuItem disabled>Loading...</MenuItem>
             ) : (
               cities.map((city) => (
-                <MenuItem key={city.id} value={city.name}>
+                <MenuItem key={city.id} value={city.id}>
                   <ListItemText primary={city.name} />
                 </MenuItem>
               ))
@@ -180,7 +180,7 @@ export default function CommuneFilter(props: InputPropsType) {
               <MenuItem disabled>Loading...</MenuItem>
             ) : (
               communes.map((commune) => (
-                <MenuItem key={commune.id} value={commune.name}>
+                <MenuItem key={commune.id} value={commune.id}>
                   <ListItemText primary={commune.name} />
                 </MenuItem>
               ))
