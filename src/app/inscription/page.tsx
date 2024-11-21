@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { RequestHandler } from "@/src/utils/api";
 import { InputDynamic } from "@/src/components/form/bigs/inputDynamic";
 import { HeadProprety } from "@/src/types/form/currentForm";
-import { Box } from "lucide-react";
 
 const steps = [
   { label: "Identification" },

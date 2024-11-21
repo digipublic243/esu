@@ -13,7 +13,11 @@ export class RequestHandler {
   header: { [key: string]: any; authorization?: string } = {
     "Content-Type": "application/json",
     Accept: "application/json",
+    "application-id": "550e8400-e29b-41d4-a716-446655440000",
+    "api-key": "8f3a9c7d1e5b4f2a6h8j0k2m4n6p8r1t3v5x7z9b2d4f6h8j0k2m4n6p8r1t3v5x7z",
+    "application-key": "550e8400-e29b-41d4-a716-446655440000",
   };
+
   constructor() {
     this.API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   }
@@ -84,9 +88,6 @@ export class RequestHandler {
       ...this.header,
       ...params.header,
       "Content-Type": "application/json; charset=utf-8",
-      "application_id" : "550e8400-e29b-41d4-a716-446655440000",
-      "api_key" : "8f3a9c7d1e5b4f2a6h8j0k2m4n6p8r1t3v5x7z9b2d4f6h8j0k2m4n6p8r1t3v5x7z",
-      "application_key" : "550e8400-e29b-41d4-a716-446655440000",
     };
 
     if (

@@ -16,6 +16,7 @@ import SingleSelect from "../asset/sigleSelect";
 import { InputPassword } from "../asset/inputPassword";
 import WebCamComponent from "../asset/webCam";
 import InputFile from "../asset/inputFile";
+import CommuneFilter from "../asset/communeFilter";
 
 export const InputDynamic = (props: {
   headProprety: HeadProprety;
@@ -78,6 +79,9 @@ export const InputDynamic = (props: {
         return <InputPassword {...props.inputProps} />;
       case "webCam":
         return <WebCamComponent {...props.inputProps} />;
+
+      case "entity":
+        return <CommuneFilter {...props.inputProps} />;
       default:
         return null;
     }
