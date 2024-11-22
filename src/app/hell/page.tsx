@@ -6,52 +6,25 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Image from "next/image";
 
 const steps = [
-  "Trouve ton programme",
-  "Prépare ta demande",
-  "Soumets ta demande",
+  "Select campaign settings",
+  "Create an ad group",
+  "Create an ad",
+  "Create an ad",
+  "Create an ad",
+  "Create an ad",
+  "Create an ad",
+  "Create an ad",
 ];
-
-function FormStep1() {
-  return (
-    <div>
-      <div>{/* <Image  /> */}</div>
-      <div>formulaire</div>
-    </div>
-  );
-}
-
-function FormStep2() {
-  return (
-    <form>
-      <div>
-        <label htmlFor="document">Document :</label>
-        <input type="file" id="document" name="document" />
-      </div>
-    </form>
-  );
-}
-
-function FormStep3() {
-  return (
-    <form>
-      <div>
-        <label htmlFor="confirmation">Confirmation :</label>
-        <textarea
-          id="confirmation"
-          name="confirmation"
-          placeholder="Confirmez votre soumission"
-        ></textarea>
-      </div>
-    </form>
-  );
-}
 
 function CreateAccount() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
+
+  const isStepOptional = (step: number) => {
+    return step === 1;
+  };
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
@@ -72,66 +45,80 @@ function CreateAccount() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
   const handleReset = () => {
     setActiveStep(0);
   };
-
-  const getForm = () => {
-    switch (activeStep) {
-      case 0:
-        return <FormStep1 />;
-      case 1:
-        return <FormStep2 />;
-      case 2:
-        return <FormStep3 />;
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div className="p-[5%] bg-gray-100 h-[90vh]">
-      <div className="bg-white p-4 border rounded">
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps: { completed?: boolean } = {};
-            const labelProps: { optional?: React.ReactNode } = {};
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
+    <div className="p-[5%] bg-gray-100 h-[90vh] ">
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: {
+            optional?: React.ReactNode;
+          } = {};
+          if (isStepOptional(index)) {
+            labelProps.optional = (
+              <Typography variant="caption">Optional</Typography>
             );
-          })}
-        </Stepper>
+          }
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
 
-        {activeStep === steps.length ? (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>Inscription Réussie</Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>{getForm()}</Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Inscription Réussi</Typography>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Box sx={{ flex: "1 1 auto" }} />
+            <Button onClick={handleReset}>Reset</Button>
+          </Box>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: "1 1 auto" }} />
+            {isStepOptional(activeStep) && (
+              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                Skip
               </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </Box>
-          </React.Fragment>
-        )}
-      </div>
+            )}
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? "Finish" : "Next"}
+            </Button>
+          </Box>
+        </React.Fragment>
+      )}
     </div>
   );
 }
