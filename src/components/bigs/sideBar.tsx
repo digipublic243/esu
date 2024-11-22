@@ -20,6 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ admissionComplete }) => {
   return (
     <Box
       sx={{
+        height: "88vh",
         width: isOpen ? "250px" : "0px",
         overflow: "hidden",
         bgcolor: "#048996",
