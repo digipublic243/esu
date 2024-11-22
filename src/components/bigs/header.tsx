@@ -94,11 +94,17 @@ const Header: React.FC = () => {
 
           {/* Connexion Button (positionné en bas sur mobile) */}
 
-          <p className="md:hidden flex items-center text-white py-2 px-4  hover:text-primary transition duration-200 ease-in-out mb-4 ml-4 ">
+          <p className="md:hidden flex items-center text-gray-900 py-2 px-4  hover:text-primary transition duration-200 ease-in-out mb-4 ml-4 gap-4">
             <Dropdown>
-              <MenuButton className="text-white">
-                <FaSignInAlt className="mr-2 text-white hover:text-primary transition duration-200 ease-in-out" />
-                <Link href="/connexion">Se connecter</Link>
+              <MenuButton className="text-gray-900">
+                <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
+                <Link href="/connexion">Demande de diplome</Link>
+              </MenuButton>
+            </Dropdown>
+            <Dropdown>
+              <MenuButton className="text-gray-900">
+                <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
+                <Link href="/connexion">S'inscrire</Link>
               </MenuButton>
             </Dropdown>
           </p>
@@ -107,11 +113,17 @@ const Header: React.FC = () => {
 
       {/* Ce bouton sera visible seulement sur les écrans medium et plus grands */}
 
-      <p className="hidden md:flex items-center text-gray-900 py-2 px-4   hover:text-primary transition duration-200 ease-in-out">
+      <p className="hidden md:flex items-center text-gray-900 py-2 px-4   hover:text-primary transition duration-200 ease-in-out  gap-4">
+        <Dropdown>
+          <MenuButton className="text-gray-900">
+            <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
+            <Link href="/connexion">Demande de diplome</Link>
+          </MenuButton>
+        </Dropdown>
         <Dropdown>
           <MenuButton>
             <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out " />
-            <Link href="/connexion">Se connecter</Link>
+            <Link href="/connexion">S'inscrire</Link>
           </MenuButton>
         </Dropdown>
       </p>

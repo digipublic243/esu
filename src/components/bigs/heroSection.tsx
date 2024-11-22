@@ -16,11 +16,16 @@ function HeroSection() {
           priority
           objectFit="cover"
         />
-        <div className="absolute top-[20%] left-[10%] text-primary z-10">
-          <p className="text-[3.25rem] max-md:text-[2rem] ">Etudier en RDC</p>
-          <h1 className="text-[6rem] font-bold max-md:text-[4rem] ">
+        <div className="absolute top-[20%] left-[7%] text-primary z-10">
+          <p className="text-[2.7rem] max-md:text-[2rem] ">Etudier en RDC</p>
+          <h1 className="text-[5.4rem] font-bold max-md:text-[4rem] ">
             Admission
           </h1>
+          <Link href="/connexion">
+            <button className="px-5 py-2 bg-primary rounded-md text-white hover:bg-primaryHover transition duration-200 ease-in-out">
+              S'inscrire
+            </button>
+          </Link>
         </div>
       </div>
       <div className="w-full flex items-center justify-between py-[40px] px-[4%] bg-[#40a18f] text-white h-[100%] max-md:flex-col max-md:justify-center max-md:items-center max-md:text-[30px] max-md:gap-4">

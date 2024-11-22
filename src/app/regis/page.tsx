@@ -272,7 +272,7 @@ const RegistrationForm: React.FC = ({ closeModal }) => {
 
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700"
+              className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primaryHover"
               onClick={handleFormSubmit}
             >
               Créer mon compte
