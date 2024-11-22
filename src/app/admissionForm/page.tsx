@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  IconButton,
   Typography,
   Stepper,
   Step,
@@ -314,7 +313,7 @@ const AdmissionForm: React.FC = () => {
             boxShadow="sm"
           >
             <Stepper activeStep={activeStep}>
-              {steps.map((label, index) => (
+              {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>

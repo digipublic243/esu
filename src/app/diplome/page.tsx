@@ -61,7 +61,6 @@ const DiplomaRequestForm: React.FC = () => {
   const [address, setAddress] = useState("");
   const [university, setUniversity] = useState("");
   const [person, setPerson] = useState("");
-  const [fullname, setFullname] = useState("");
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 15 }, (_, i) => currentYear - i);
 
@@ -98,7 +97,7 @@ const DiplomaRequestForm: React.FC = () => {
           <Box>
             <Box>
               <Typography gutterBottom>
-                Nom de l'université ou institut
+                Nom de l&apos;université ou institut
               </Typography>
               <TextField
                 fullWidth
@@ -127,7 +126,9 @@ const DiplomaRequestForm: React.FC = () => {
               />
             </Box>
 
-            <Typography gutterBottom>Année d'obtention de diplome</Typography>
+            <Typography gutterBottom>
+              Année d&apos;obtention de diplome
+            </Typography>
             <FormControl className="w-[90px] ">
               <Select
                 labelId="year-select-label"
@@ -235,7 +236,7 @@ const DiplomaRequestForm: React.FC = () => {
             boxShadow="sm"
           >
             <Stepper activeStep={activeStep}>
-              {steps.map((label, index) => (
+              {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>

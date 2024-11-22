@@ -4,7 +4,7 @@ import Header from "@/src/components/bigs/header";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import RegistrationForm from "../regis/page";
+// import RegistrationForm from "../regis/page";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Username/Email:", username);
     console.log("Password:", password);
@@ -51,7 +51,7 @@ const Login = () => {
                   htmlFor="username"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Adresse Email ou Nom d'utilisateur
+                  Adresse Email ou Nom d&apos;utilisateur
                 </label>
                 <input
                   type="text"
@@ -123,7 +123,7 @@ const Login = () => {
               </h2>
               <p className="text-[#141414] ">
                 Créer un compte <br />
-                Si tu n'as pas de compte , créer un en une minute.
+                Si tu n&apos;as pas de compte , créer un en une minute.
               </p>
               <button
                 onClick={openModal}
@@ -161,8 +161,7 @@ const Login = () => {
               </div>
 
               <div>
-              <RegistrationForm closeModal={closeModal} />
-
+                {/* <RegistrationForm closeModal={closeModal} /> */}
               </div>
             </div>
           </div>

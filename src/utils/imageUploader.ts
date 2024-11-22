@@ -55,7 +55,7 @@ export class ImageUploader {
     const formData = new FormData();
 
     // Utilisez await ici pour obtenir le Blob et ses métadonnées
-    const { blob, size, width, height, name, typeMime } =
+    const { blob, name } =
       await this.base64ToBlob(base64Image);
 
     formData.append("file", blob, name); // Ajoutez le blob avec le nom
