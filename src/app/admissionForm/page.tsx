@@ -85,14 +85,41 @@ const AdmissionForm: React.FC = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const [errorMessages, setErrorMessages] = useState<{ [key: string]: string }>(
+    {}
+  );
+
   const handleFileUpload = (field: string, file: File | null) => {
-    setFormData((prev) => ({
-      ...prev,
-      documents: {
-        ...prev.documents,
-        [field]: file,
-      },
-    }));
+    if (file) {
+      if (file.type !== "application/pdf") {
+        setErrorMessages((prev) => ({
+          ...prev,
+          [field]: "Seuls les fichiers PDF sont acceptés.",
+        }));
+        return;
+      }
+
+      if (file.size > 15 * 1024 * 1024) {
+        setErrorMessages((prev) => ({
+          ...prev,
+          [field]: "La taille du fichier ne doit pas dépasser 15 Mo.",
+        }));
+        return;
+      }
+
+      setErrorMessages((prev) => ({
+        ...prev,
+        [field]: "",
+      }));
+
+      setFormData((prev) => ({
+        ...prev,
+        documents: {
+          ...prev.documents,
+          [field]: file,
+        },
+      }));
+    }
   };
   const getRandomFilieres = (count: number | undefined) => {
     const shuffled = [...filieres].sort(() => 0.5 - Math.random());
@@ -153,50 +180,103 @@ const AdmissionForm: React.FC = () => {
               Soumettez vos documents
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
-              <TextField
-                type="file"
-                label="Bulletin 6e & 5e"
-                InputLabelProps={{ shrink: true }}
-                onChange={(e) =>
-                  handleFileUpload("bulettin", e.target.files[0])
-                }
-              />
-              <TextField
-                type="file"
-                label="Attestation de Réussite"
-                InputLabelProps={{ shrink: true }}
-                onChange={(e) =>
-                  handleFileUpload("attestationReussite", e.target.files[0])
-                }
-                helperText="Si vous n'en avez pas, vous pouvez en faire la demande sur DigiPublic."
-              />
-              <TextField
-                type="file"
-                label="Attestation de Naissance"
-                InputLabelProps={{ shrink: true }}
-                onChange={(e) =>
-                  handleFileUpload("attestationNaissance", e.target.files[0])
-                }
-                helperText="Si vous n'en avez pas, vous pouvez en faire la demande sur DigiPublic."
-              />
-              <TextField
-                type="file"
-                label="Certificat de Bonne Vie et Mœurs"
-                InputLabelProps={{ shrink: true }}
-                onChange={(e) =>
-                  handleFileUpload("certificatBonneVie", e.target.files[0])
-                }
-                helperText="Si vous n'en avez pas, vous pouvez en faire la demande sur DigiPublic."
-              />
-              {formData.promotion !== "L1LMD" && (
+              <Box>
                 <TextField
                   type="file"
-                  label="Relevé de Notes"
                   InputLabelProps={{ shrink: true }}
                   onChange={(e) =>
-                    handleFileUpload("releveNotes", e.target.files[0])
+                    handleFileUpload("bulettin", e.target.files?.[0] || null)
+                  }
+                  helperText={errorMessages.bulettin || "Bulletin 6e & 5e"}
+                />
+                {errorMessages.bulettin && (
+                  <Typography color="error" variant="body2">
+                    {errorMessages.bulettin}
+                  </Typography>
+                )}
+              </Box>
+              <Box>
+                <TextField
+                  type="file"
+                  InputLabelProps={{ shrink: true }}
+                  onChange={(e) =>
+                    handleFileUpload(
+                      "attestationReussite",
+                      e.target.files?.[0] || null
+                    )
+                  }
+                  helperText={
+                    errorMessages.attestationReussite ||
+                    "Attestation de Réussite. Si vous n'en avez pas, vous pouvez en faire la demande sur DigiPublic."
                   }
                 />
+                {errorMessages.attestationReussite && (
+                  <Typography color="error" variant="body2">
+                    {errorMessages.attestationReussite}
+                  </Typography>
+                )}
+              </Box>
+              <Box>
+                <TextField
+                  type="file"
+                  InputLabelProps={{ shrink: true }}
+                  onChange={(e) =>
+                    handleFileUpload(
+                      "attestationNaissance",
+                      e.target.files?.[0] || null
+                    )
+                  }
+                  helperText={
+                    errorMessages.attestationNaissance ||
+                    "Attestation de Naissance. Si vous n'en avez pas, vous pouvez en faire la demande sur DigiPublic."
+                  }
+                />
+                {errorMessages.attestationNaissance && (
+                  <Typography color="error" variant="body2">
+                    {errorMessages.attestationNaissance}
+                  </Typography>
+                )}
+              </Box>
+              <Box>
+                <TextField
+                  type="file"
+                  InputLabelProps={{ shrink: true }}
+                  onChange={(e) =>
+                    handleFileUpload(
+                      "certificatBonneVie",
+                      e.target.files?.[0] || null
+                    )
+                  }
+                  helperText={
+                    errorMessages.certificatBonneVie ||
+                    "Certificat de Bonne Vie et Mœurs. Si vous n'en avez pas, vous pouvez en faire la demande sur DigiPublic."
+                  }
+                />
+                {errorMessages.certificatBonneVie && (
+                  <Typography color="error" variant="body2">
+                    {errorMessages.certificatBonneVie}
+                  </Typography>
+                )}
+              </Box>
+              {formData.promotion !== "L1LMD" && (
+                <Box>
+                  <TextField
+                    type="file"
+                    InputLabelProps={{ shrink: true }}
+                    onChange={(e) =>
+                      handleFileUpload(
+                        "releveNotes",
+                        e.target.files?.[0] || null
+                      )
+                    }
+                    helperText={errorMessages.releveNotes || "Relevé de Notes"}
+                  />
+                  {errorMessages.releveNotes && (
+                    <Typography color="error" variant="body2">
+                      {errorMessages.releveNotes}
+                    </Typography>
+                  )}
+                </Box>
               )}
             </Box>
           </Box>
@@ -212,7 +292,7 @@ const AdmissionForm: React.FC = () => {
               <Typography>Filière: {formData.filiere}</Typography>
               <Typography>Promotion: {formData.promotion}</Typography>
               <Typography>
-                Documents soumis :
+                <p className="font-bold my-2 ">Documents soumis :</p>
                 <ul>
                   {Object.entries(formData.documents).map(([key, value]) => (
                     <li key={key}>
@@ -230,9 +310,9 @@ const AdmissionForm: React.FC = () => {
   const [admissionComplete, setAdmissionComplete] = useState(false);
 
   return (
-    <Box>
+    <Box display="flex" flexDirection="column">
       <HeaderSingIn />
-      <Box display="flex" height="100vh">
+      <Box display="flex" flexGrow={1}>
         <Sidebar admissionComplete={admissionComplete} />
         <Box flexGrow={1} p={4} bgcolor="#f5f5f5">
           <Box
@@ -241,6 +321,8 @@ const AdmissionForm: React.FC = () => {
             p={4}
             bgcolor="white"
             borderRadius="8px"
+            height="80vh"
+            overflow="auto"
             boxShadow="sm"
           >
             <Stepper activeStep={activeStep}>

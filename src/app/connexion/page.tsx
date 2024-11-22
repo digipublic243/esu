@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    router.push(`/pageAccueil`);
+    router.push(`/homePage`);
   };
 
   return (

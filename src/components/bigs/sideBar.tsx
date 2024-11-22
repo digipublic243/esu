@@ -5,17 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import SchoolIcon from "@mui/icons-material/School";
 
-import {
-  Box,
-  Button,
-  IconButton,
-  Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 
 type SidebarProps = {
@@ -30,7 +20,6 @@ const Sidebar: React.FC<SidebarProps> = ({ admissionComplete }) => {
   return (
     <Box
       sx={{
-        height: "100vh",
         width: isOpen ? "250px" : "0px",
         overflow: "hidden",
         bgcolor: "#048996",
@@ -40,7 +29,6 @@ const Sidebar: React.FC<SidebarProps> = ({ admissionComplete }) => {
         position: "relative",
       }}
     >
-      {/* Icone pour masquer ou afficher */}
       <IconButton
         onClick={toggleSidebar}
         sx={{
@@ -57,7 +45,6 @@ const Sidebar: React.FC<SidebarProps> = ({ admissionComplete }) => {
         {isOpen ? <CloseIcon /> : <MenuIcon />}
       </IconButton>
 
-      {/* Contenu du sidebar */}
       {isOpen && (
         <Box sx={{ p: 2 }}>
           <Typography
@@ -84,12 +71,12 @@ const Sidebar: React.FC<SidebarProps> = ({ admissionComplete }) => {
               Suivre l'inscription
             </Button>
           )}
-          {/* Nouveau bouton pour faire une demande de diplôme */}
+
           <div>
             <Link href="/diplome">
               <Button
                 fullWidth
-                startIcon={<SchoolIcon />} // Choisissez l'icône que vous préférez
+                startIcon={<SchoolIcon />}
                 sx={{ mb: 2, bgcolor: "white", color: "black" }}
               >
                 Diplôme

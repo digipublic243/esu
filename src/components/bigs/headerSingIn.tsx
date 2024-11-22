@@ -27,7 +27,7 @@ const HeaderSingIn: React.FC = () => {
   return (
     <header className="flex items-center justify-between  text-customBlack py-[20px] px-[4%]">
       <div className="flex items-center">
-        <Link href="/">
+        <Link href="/homePage">
           <Image src={logo} width={150} height={50} alt="logo" priority />
         </Link>
       </div>

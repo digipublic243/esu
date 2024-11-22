@@ -3,37 +3,92 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  IconButton,
   Typography,
   Stepper,
   Step,
   StepLabel,
   TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import SchoolIcon from "@mui/icons-material/School";
 import Sidebar from "@/src/components/bigs/sideBar";
 import HeaderSingIn from "@/src/components/bigs/headerSingIn";
 
-const steps = ["Entrez votre matricule", "Demande soumise avec succès"];
+const steps = [
+  "Entrez votre matricule",
+  "Demande soumise avec succès",
+  "Dernière étape",
+];
+
+const provinces = [
+  "Bas-Uele",
+  "Haut-Uele",
+  "Ituri",
+  "Tshopo",
+  "Haut-Lomami",
+  "Lomami",
+  "Kasaï",
+  "Kasaï-Central",
+  "Kasaï-Oriental",
+  "Kinshasa",
+  "Kongo-Central",
+  "Kwango",
+  "Kwilu",
+  "Mai-Ndombe",
+  "Maniema",
+  "Mongala",
+  "Nord-Kivu",
+  "Nord-Ubangi",
+  "Sankuru",
+  "Sud-Kivu",
+  "Sud-Ubangi",
+  "Tanganyika",
+  "Tshuapa",
+  "Haut-Katanga",
+  "Lualaba",
+];
 
 const DiplomaRequestForm: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [matricule, setMatricule] = useState<string>("");
+  const [departement, setDepartement] = useState<string>("");
+  const [section, setSection] = useState<string>("");
+  const [year, setYear] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [territory, setTerritory] = useState("");
+  const [address, setAddress] = useState("");
+  const [university, setUniversity] = useState("");
+  const [person, setPerson] = useState("");
+  const [fullname, setFullname] = useState("");
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 15 }, (_, i) => currentYear - i);
 
-  const handleNext = () => {
-    if (activeStep === 0 && matricule) {
-      setActiveStep(1);
-    }
-  };
-
-  const handleBack = () => {
+  const resetForm = () => {
+    setDepartement("");
+    setSection("");
+    setYear("");
+    setProvince("");
+    setCity("");
+    setTerritory("");
+    setAddress("");
+    setUniversity("");
+    setPerson("");
     setActiveStep(0);
   };
 
-  const handleMatriculeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMatricule(e.target.value);
+  const handleNext = () => {
+    setActiveStep((prevStep) => prevStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevStep) => prevStep - 1);
+  };
+
+  const handleFinish = () => {
+    console.log("Formulaire soumis avec succès !");
+    resetForm();
   };
 
   const renderFormStep = () => {
@@ -42,40 +97,121 @@ const DiplomaRequestForm: React.FC = () => {
         return (
           <Box>
             <Box>
-              <Typography variant="h6" gutterBottom>
-                Entrez votre matricule
+              <Typography gutterBottom>
+                Nom de l'université ou institut
               </Typography>
               <TextField
                 fullWidth
-                label="Matricule"
-                value={matricule}
-                onChange={handleMatriculeChange}
+                label="Nom de l'université ou institut"
+                value={university}
+                onChange={(e) => setUniversity(e.target.value)}
                 required
               />
-            </Box>{" "}
-            <Box>
-              <Typography variant="h6" gutterBottom>
-                Entrez votre année academique
-              </Typography>
+
+              <Typography gutterBottom>Departement</Typography>
               <TextField
                 fullWidth
-                label="Matricule"
-                value={matricule}
-                onChange={handleMatriculeChange}
+                label="Departement"
+                onChange={(e) => setDepartement(e.target.value)}
+                value={departement}
+                required
+              />
+
+              <Typography gutterBottom>Faculté ou section</Typography>
+              <TextField
+                fullWidth
+                label="Faculté ou section"
+                value={section}
+                onChange={(e) => setSection(e.target.value)}
                 required
               />
             </Box>
+
+            <Typography gutterBottom>Année d'obtention de diplome</Typography>
+            <FormControl className="w-[90px] ">
+              <Select
+                labelId="year-select-label"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              >
+                {years.map((yr) => (
+                  <MenuItem key={yr} value={yr}>
+                    {yr}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
         );
       case 1:
         return (
           <Box>
-            <Typography variant="h6" gutterBottom>
-              Demande soumise avec succès
+            <Typography gutterBottom>Province</Typography>
+            <FormControl fullWidth>
+              <InputLabel id="province-select-label">
+                Choisir la province
+              </InputLabel>
+              <Select
+                labelId="province-select-label"
+                value={province}
+                onChange={(e) => setProvince(e.target.value)}
+                required
+              >
+                {provinces.map((prov) => (
+                  <MenuItem key={prov} value={prov}>
+                    {prov}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Typography gutterBottom>Ville</Typography>
+            <TextField
+              fullWidth
+              label="Nom de la ville"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+            <Typography gutterBottom>Commune ou Territoire</Typography>
+            <TextField
+              fullWidth
+              label="Nom de la commune ou territoire"
+              value={territory}
+              onChange={(e) => setTerritory(e.target.value)}
+              required
+            />
+            <Typography gutterBottom>Adresse complète</Typography>
+            <TextField
+              fullWidth
+              label="Adresse complète"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+
+            <Typography gutterBottom>Personne de référence</Typography>
+            <TextField
+              fullWidth
+              label="Personne de référence"
+              value={person}
+              onChange={(e) => setPerson(e.target.value)}
+              required
+            />
+          </Box>
+        );
+      case 2:
+        return (
+          <Box textAlign="center">
+            <Typography variant="h5" gutterBottom>
+              🎉 Félicitations !
             </Typography>
-            <Typography>
-              Votre demande de diplôme a été soumise avec succès. Vous serez
-              contacté pour la suite de la procédure.
+            <Typography gutterBottom>
+              Votre demande de diplôme a bien été soumise et est en cours de
+              traitement.
+            </Typography>
+            <Typography color="textSecondary">
+              Vous recevrez un email de confirmation dès que votre demande aura
+              été finalisée.
             </Typography>
           </Box>
         );
@@ -109,24 +245,29 @@ const DiplomaRequestForm: React.FC = () => {
             <Box mt={4}>{renderFormStep()}</Box>
 
             <Box display="flex" justifyContent="space-between" mt={4}>
-              {activeStep === 0 && (
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className="text-primary"
+                variant="outlined"
+              >
+                Retour
+              </Button>
+              {activeStep === steps.length - 1 ? (
+                <Button
+                  variant="contained"
+                  className="bg-primary hover:bg-primaryHover"
+                  onClick={handleFinish} // Appel de la fonction handleFinish
+                >
+                  Terminer
+                </Button>
+              ) : (
                 <Button
                   variant="contained"
                   className="bg-primary hover:bg-primaryHover"
                   onClick={handleNext}
-                  disabled={!matricule}
                 >
                   Suivant
-                </Button>
-              )}
-
-              {activeStep === 1 && (
-                <Button
-                  variant="contained"
-                  className="bg-primary hover:bg-primaryHover"
-                  onClick={handleBack}
-                >
-                  Retour
                 </Button>
               )}
             </Box>
