@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import SchoolIcon from "@mui/icons-material/School";
 import Sidebar from "@/src/components/bigs/sideBar";
+import HeaderSingIn from "@/src/components/bigs/headerSingIn";
 
 const steps = ["Entrez votre matricule", "Demande soumise avec succès"];
 
@@ -84,44 +85,51 @@ const DiplomaRequestForm: React.FC = () => {
   };
 
   return (
-    <Box display="flex" height="100vh">
-      <Sidebar admissionComplete={false} />
-      <Box flexGrow={1} p={4} bgcolor="#f5f5f5">
-        <Box
-          maxWidth="600px"
-          mx="auto"
-          p={4}
-          bgcolor="white"
-          borderRadius="8px"
-          boxShadow="sm"
-        >
-          <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
+    <Box>
+      <HeaderSingIn />
+      <Box display="flex" height="100vh">
+        <Sidebar admissionComplete={false} />
+        <Box flexGrow={1} p={4} bgcolor="#f5f5f5">
+          <Box
+            maxWidth="600px"
+            mx="auto"
+            p={4}
+            bgcolor="white"
+            borderRadius="8px"
+            boxShadow="sm"
+          >
+            <Stepper activeStep={activeStep}>
+              {steps.map((label, index) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
 
-          <Box mt={4}>{renderFormStep()}</Box>
+            <Box mt={4}>{renderFormStep()}</Box>
 
-          <Box display="flex" justifyContent="space-between" mt={4}>
-            {activeStep === 0 && (
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                disabled={!matricule}
-              >
-                Suivant
-              </Button>
-            )}
+            <Box display="flex" justifyContent="space-between" mt={4}>
+              {activeStep === 0 && (
+                <Button
+                  variant="contained"
+                  className="bg-primary hover:bg-primaryHover"
+                  onClick={handleNext}
+                  disabled={!matricule}
+                >
+                  Suivant
+                </Button>
+              )}
 
-            {activeStep === 1 && (
-              <Button variant="contained" color="primary" onClick={handleBack}>
-                Retour
-              </Button>
-            )}
+              {activeStep === 1 && (
+                <Button
+                  variant="contained"
+                  className="bg-primary hover:bg-primaryHover"
+                  onClick={handleBack}
+                >
+                  Retour
+                </Button>
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@mui/material";
 import { SchoolIcon } from "lucide-react";
 import Link from "next/link";
+import HeaderSingIn from "@/src/components/bigs/headerSingIn";
 
 const AccueilPage = () => {
   const searchParams = useSearchParams();
@@ -12,27 +13,36 @@ const AccueilPage = () => {
   const surname = searchParams.get("surname");
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 h-[90vh] ">
-      <div className="flex gap-4">
-        <Link href="/admissionForm">
-          <Button
-            fullWidth
-            startIcon={<SchoolIcon />}
-            sx={{ mb: 2, bgcolor: "white", color: "black" }}
+    <div>
+      <HeaderSingIn />
+      <div className="flex items-center justify-center bg-gray-100 h-[90vh] ">
+        <div className="flex gap-4">
+          <Link
+            href="/admissionForm"
+            className="p-[25px] border border-primary rounded hover:bg-primaryHover hover:text-white "
           >
-            Inscription
-          </Button>
-        </Link>
+            <Button
+              fullWidth
+              startIcon={<SchoolIcon />}
+              className="text-black hover:text-white"
+            >
+              Demande d'inscription Inscription
+            </Button>
+          </Link>
 
-        <Link href="/">
-          <Button
-            fullWidth
-            startIcon={<SchoolIcon />} // Choisissez l'icône que vous préférez
-            sx={{ mb: 2, bgcolor: "white", color: "black" }}
+          <Link
+            href="/diplome"
+            className="p-[25px] border border-primary rounded hover:bg-primaryHover hover:text-white"
           >
-            Diplôme
-          </Button>
-        </Link>
+            <Button
+              fullWidth
+              startIcon={<SchoolIcon />}
+              className="text-black hover:text-white"
+            >
+              Demande d'inscription de Diplôme
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

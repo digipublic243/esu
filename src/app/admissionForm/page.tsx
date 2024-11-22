@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import Sidebar from "@/src/components/bigs/sideBar";
+import HeaderSingIn from "@/src/components/bigs/headerSingIn";
 
 const steps = [
   "Choisissez un programme",
@@ -229,50 +230,57 @@ const AdmissionForm: React.FC = () => {
   const [admissionComplete, setAdmissionComplete] = useState(false);
 
   return (
-    <Box display="flex" height="100vh">
-      <Sidebar admissionComplete={admissionComplete} />
-      <Box flexGrow={1} p={4} bgcolor="#f5f5f5">
-        <Box
-          maxWidth="600px"
-          mx="auto"
-          p={4}
-          bgcolor="white"
-          borderRadius="8px"
-          boxShadow="sm"
-        >
-          <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
+    <Box>
+      <HeaderSingIn />
+      <Box display="flex" height="100vh">
+        <Sidebar admissionComplete={admissionComplete} />
+        <Box flexGrow={1} p={4} bgcolor="#f5f5f5">
+          <Box
+            maxWidth="600px"
+            mx="auto"
+            p={4}
+            bgcolor="white"
+            borderRadius="8px"
+            boxShadow="sm"
+          >
+            <Stepper activeStep={activeStep}>
+              {steps.map((label, index) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
 
-          <Box mt={4}>{renderFormStep()}</Box>
-          <Box display="flex" justifyContent="space-between" mt={4}>
-            <Button
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              variant="outlined"
-            >
-              Retour
-            </Button>
-            {activeStep === steps.length - 1 ? (
+            <Box mt={4}>{renderFormStep()}</Box>
+            <Box display="flex" justifyContent="space-between" mt={4}>
               <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  setAdmissionComplete(true);
-                  handleReset();
-                }}
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                variant="outlined"
               >
-                Terminer
+                Retour
               </Button>
-            ) : (
-              <Button variant="contained" color="primary" onClick={handleNext}>
-                Suivant
-              </Button>
-            )}
+              {activeStep === steps.length - 1 ? (
+                <Button
+                  variant="contained"
+                  className="bg-primary hover:bg-primaryHover"
+                  onClick={() => {
+                    setAdmissionComplete(true);
+                    handleReset();
+                  }}
+                >
+                  Terminer
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  className="bg-primary hover:bg-primaryHover"
+                  onClick={handleNext}
+                >
+                  Suivant
+                </Button>
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>
