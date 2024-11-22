@@ -184,7 +184,7 @@ const AdmissionForm: React.FC = () => {
                 <TextField
                   type="file"
                   InputLabelProps={{ shrink: true }}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleFileUpload("bulettin", e.target.files?.[0] || null)
                   }
                   helperText={errorMessages.bulettin || "Bulletin 6e & 5e"}
@@ -199,11 +199,8 @@ const AdmissionForm: React.FC = () => {
                 <TextField
                   type="file"
                   InputLabelProps={{ shrink: true }}
-                  onChange={(e) =>
-                    handleFileUpload(
-                      "attestationReussite",
-                      e.target.files?.[0] || null
-                    )
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleFileUpload("bulettin", e.target.files?.[0] || null)
                   }
                   helperText={
                     errorMessages.attestationReussite ||
@@ -220,11 +217,8 @@ const AdmissionForm: React.FC = () => {
                 <TextField
                   type="file"
                   InputLabelProps={{ shrink: true }}
-                  onChange={(e) =>
-                    handleFileUpload(
-                      "attestationNaissance",
-                      e.target.files?.[0] || null
-                    )
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleFileUpload("bulettin", e.target.files?.[0] || null)
                   }
                   helperText={
                     errorMessages.attestationNaissance ||
@@ -241,11 +235,8 @@ const AdmissionForm: React.FC = () => {
                 <TextField
                   type="file"
                   InputLabelProps={{ shrink: true }}
-                  onChange={(e) =>
-                    handleFileUpload(
-                      "certificatBonneVie",
-                      e.target.files?.[0] || null
-                    )
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleFileUpload("bulettin", e.target.files?.[0] || null)
                   }
                   helperText={
                     errorMessages.certificatBonneVie ||
@@ -263,11 +254,8 @@ const AdmissionForm: React.FC = () => {
                   <TextField
                     type="file"
                     InputLabelProps={{ shrink: true }}
-                    onChange={(e) =>
-                      handleFileUpload(
-                        "releveNotes",
-                        e.target.files?.[0] || null
-                      )
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      handleFileUpload("bulettin", e.target.files?.[0] || null)
                     }
                     helperText={errorMessages.releveNotes || "Relevé de Notes"}
                   />

@@ -3,7 +3,6 @@
 import Header from "@/src/components/bigs/header";
 import Link from "next/link";
 import { useState } from "react";
-import { CiCircleRemove } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import RegistrationForm from "../regis/page";
 
@@ -12,7 +11,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const togglePasswordVisibility = () => {
@@ -162,9 +160,9 @@ const Login = () => {
                 </h2>
               </div>
 
-              {/* Modal Content */}
               <div>
-                <RegistrationForm closeModal={closeModal} />
+              <RegistrationForm closeModal={closeModal} />
+
               </div>
             </div>
           </div>

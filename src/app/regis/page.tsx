@@ -51,11 +51,13 @@ const schema = z.object({
 });
 
 type FormData = z.infer<typeof schema>;
+
+// Exemple dans ../regis/page.tsx
 interface RegistrationFormProps {
   closeModal: () => void;
 }
 
-const RegistrationForm: React.FC = ({ closeModal }) => {
+const RegistrationForm: React.FC<RegistrationFormProps> = ({ closeModal }) => {
   const {
     register,
     handleSubmit,
