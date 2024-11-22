@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { CiCircleRemove } from "react-icons/ci";
 import { useRouter } from "next/navigation";
+import RegistrationForm from "../regis/page";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -153,16 +154,18 @@ const Login = () => {
         </div>
 
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded shadow-lg w-[30%]">
-              <div className="flex justify-between">
-                <h2 className="text-2xl font-bold mb-4">Créer un compte</h2>
-                <div onClick={closeModal} className="cursor-pointer">
-                  <CiCircleRemove className="text-[2rem] " />
-                </div>
+          <div className="fixed inset-0 z-40 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+            <div className="rounded-lg shadow-lg w-full max-w-3xl relative">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Créer un compte
+                </h2>
               </div>
 
-              <div>Chargement du formulaire en cours ... </div>
+              {/* Modal Content */}
+              <div>
+                <RegistrationForm closeModal={closeModal} />
+              </div>
             </div>
           </div>
         )}
