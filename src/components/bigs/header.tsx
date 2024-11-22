@@ -117,7 +117,7 @@ const Header: React.FC = () => {
         <Dropdown>
           <MenuButton className="text-gray-900">
             <FaSignInAlt className="mr-2 text-gray-900 hover:text-primary transition duration-200 ease-in-out" />
-            <Link href="/connexion">Demande de diplome</Link>
+            <Link href="/diplomeDemande">Demande de diplome</Link>
           </MenuButton>
         </Dropdown>
         <Dropdown>
